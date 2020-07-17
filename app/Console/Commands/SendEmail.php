@@ -35,7 +35,7 @@ class SendEmail extends Command
             $this->info('The email send successfully!');
 
         }else{
-            $this->info('There is no such user in the database!');
+            $this->info('There is no user with this email address in the database');
         }
     }
 }

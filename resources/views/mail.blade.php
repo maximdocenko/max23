@@ -1,5 +1,10 @@
-<p>Список ваших продуктов</p>
+<p>Your product list</p>
 <table>
+
+    <tr>
+        <td style="padding: 10px; border: solid 1px #333;">Name</td>
+        <td style="padding: 10px; border: solid 1px #333;">Price</td>
+    </tr>
 
 @foreach($products as $product)
 
