@@ -10,7 +10,7 @@ class Product extends Model
 
     protected $table = 'products';
 
-    public function products(){
-        return $this->hasMany('App\Product');
+    public function user(){
+        return $this->belongsTo('App\User');
     }
 }
