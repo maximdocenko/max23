@@ -9,7 +9,7 @@ use Nexmo\Laravel\Facade\Nexmo;
 
 class SendSMS extends Command
 {
-    protected $signature = 'sms:send {phone}';
+    protected $signature = 'sms:send {phone}'; // регистрируем комманду
 
     protected $description = 'Sending sms to the users.';
 
@@ -21,13 +21,15 @@ class SendSMS extends Command
     public function handle()
     {
 
-        $user = User::where('phone', $this->argument('phone'))->first();
+        $user = User::where('phone', $this->argument('phone'))->first(); // получаем пользователя с введеным номером телефона
 
         if($user) {
-            $products = $user->products;
+
+            $products = $user->products; //  Список продуктов пользователя
+
             $total = DB::table('products')
                 ->where('products.user_id', '=', $user['id'])
-                ->sum('products.price');
+                ->sum('products.price'); // Общая стоисомть продуктов
 
             $data = 'Your product list'."\n\n";
 
@@ -41,12 +43,13 @@ class SendSMS extends Command
                 'to'   => $this->argument('phone'),
                 'from' => '998935366527',
                 'text' => $data
-            ]);
+            ]); // Отправка sms
+
             $this->info('The sms send successfully!');
 
 
         }else{
-            $this->info('There is no user with this phone number in the database');
+            $this->info('There is no user with this phone number in the database'); // В случае если пользователя в базе дынных нет
         }
     }
 }
